@@ -15,6 +15,8 @@ A simple web-based tool to convert Markdown to HTML. This app is built using Rea
 
 You can try the live demo of this tool at [Github Page: Markdown-to-HTML Converter](https://doctorlai.github.io/markdown-html-converter/)
 
+Here is a similar [markdown/html previewer](https://helloacm.com/markdown/) online tool with Markdown API that was developed a while ago.
+
 ## Installation
 
 To run the tool locally:
