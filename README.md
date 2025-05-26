@@ -3,6 +3,8 @@
 
 A simple web-based tool to convert Markdown to HTML. This app is built using React and runs in the browser. It provides an easy-to-use interface with two text areas, where you can paste your Markdown source (left) and convert it to HTML (right).
 
+![image](https://github.com/user-attachments/assets/c0afac08-cae8-48a1-b040-b2c5b6374b0f)
+
 ## Features
 
 - **Markdown to HTML Conversion**: Convert Markdown to HTML.
