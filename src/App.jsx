@@ -107,6 +107,16 @@ export default function App() {
             GitHub
           </a>
         </p>
+        <p>
+          Another Similar Project:{" "}
+          <a
+            title="Online Markdown/HTML Previewer with API"
+            target="_blank"
+            href="https://helloacm.com/markdown/"
+          >
+            Online Markdown/HTML Previewer with API
+          </a>
+        </p>
       </footer>
     </div>
   );
