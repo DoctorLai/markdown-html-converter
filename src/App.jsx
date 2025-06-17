@@ -74,6 +74,13 @@ export default function App() {
           <button onClick={convertToHtml}>Convert to HTML →</button>
           <button onClick={clearInputs}>❌ Clear</button>
         </div>
+
+        {/* Live HTML Preview */}
+        <h2>🔍 Live Preview</h2>
+        <div
+          className="preview"
+          dangerouslySetInnerHTML={{ __html: htmlOutput }}
+        ></div>
       </div>
       <footer>
         <p>

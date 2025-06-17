@@ -1,7 +1,7 @@
-# Markdown to HTML Converter
+# Markdown to HTML Converter/Previewer
 [![Markdown-HTML-Converter (Built, Lint and Test)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml/badge.svg)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml)
 
-A simple web-based tool to convert Markdown to HTML. This app is built using React and runs in the browser. It provides an easy-to-use interface with two text areas, where you can paste your Markdown source (left) and convert it to HTML (right).
+A simple web-based tool to convert Markdown to HTML. This app is built using React and runs in the browser. It provides an easy-to-use interface with two text areas, where you can paste your Markdown source (left) and convert it to HTML (right). Meantime, the HTML will be previewed on the page.
 
 ![image](https://github.com/user-attachments/assets/c0afac08-cae8-48a1-b040-b2c5b6374b0f)
 
@@ -12,6 +12,7 @@ A simple web-based tool to convert Markdown to HTML. This app is built using Rea
 - **Tab Support**: Properly inserts spaces when pressing the "Tab" key inside text areas.
 - **Simple and Intuitive UI**: Easy to use with a clean interface.
 - **Deploy Easily**: `npm run build` and `npm run deploy`
+- **Previewer** The tool provides a real-time HTML previewer for the given markdown source.
 
 ## Live Demo
 
