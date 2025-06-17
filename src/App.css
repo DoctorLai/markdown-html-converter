@@ -116,3 +116,18 @@ footer a {
 footer a:hover {
   color: #0056b3;
 }
+
+.preview {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-top: 1rem;
+  background-color: #fff;
+  color: #000;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.app.dark .preview {
+  background-color: #1e1e1e;
+  color: #ddd;
+  border-color: #444;
+}
