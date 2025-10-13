@@ -34,4 +34,26 @@ describe("convertMarkdownToHtml", () => {
     );
     expect(() => convertMarkdownToHtml(123)).toThrow("Markdown parse error");
   });
+
+  it("converts complex markdown with multiple elements", () => {
+    const md = `
+# Title
+
+This is a paragraph with **bold** text and a [link](https://example.com).
+
+- List item 1
+- List item 2
+
+> A blockquote
+`;
+    const html = convertMarkdownToHtml(md);
+    expect(html).toContain("<h1>Title</h1>");
+    expect(html).toContain(
+      '<p>This is a paragraph with <strong>bold</strong> text and a <a href="https://example.com">link</a>.</p>',
+    );
+    expect(html).toContain(
+      "<ul>\n<li>List item 1</li>\n<li>List item 2</li>\n</ul>",
+    );
+    expect(html).toContain("<blockquote>\n<p>A blockquote</p>\n</blockquote>");
+  });
 });
