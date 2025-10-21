@@ -1,5 +1,5 @@
 # Markdown to HTML Converter/Previewer
-[![Markdown-HTML-Converter (Built, Lint and Test)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml/badge.svg)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml)
+[![Markdown-HTML-Converter (Built, Lint and Test)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml/badge.svg)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml) [![Run Tests with Coverage](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/coverage.yaml/badge.svg)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/coverage.yaml)
 
 A simple web-based tool to convert Markdown to HTML. This app is built using React and runs in the browser. It provides an easy-to-use interface with two text areas, where you can paste your Markdown source (left) and convert it to HTML (right). Meantime, the HTML will be previewed on the page.
 
