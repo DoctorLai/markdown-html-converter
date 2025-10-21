@@ -1,5 +1,5 @@
 # Markdown to HTML Converter/Previewer
-[![Markdown-HTML-Converter (Built, Lint and Test)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml/badge.svg)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml)
+[![Markdown-HTML-Converter (Built, Lint and Test)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml/badge.svg)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml) [![Run Tests with Coverage](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/coverage.yaml/badge.svg)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/coverage.yaml)
 
 A simple web-based tool to convert Markdown to HTML. This app is built using React and runs in the browser. It provides an easy-to-use interface with two text areas, where you can paste your Markdown source (left) and convert it to HTML (right). Meantime, the HTML will be previewed on the page.
 
@@ -25,33 +25,38 @@ Here is a similar [markdown/html previewer](https://helloacm.com/markdown/) onli
 To run the tool locally:
 
 1. Clone the repository:
-    ```bash
-    git clone https://github.com/doctorlai/markdown-html-converter.git
-    cd markdown-html-converter
-    ```
+```bash
+git clone https://github.com/doctorlai/markdown-html-converter.git
+cd markdown-html-converter
+```
 
 2. Install dependencies:
-    ```bash
-    npm install
-    ```
+```bash
+npm install
+```
 
 3. Start the development server:
-    ```bash
-    npm run dev
-    ```
+```bash
+npm run dev
+```
 
 4. Tests:
-    ```bash
-    npm run test
-    ```
+```bash
+## or simply: npm test
+npm run test
+```
 
-5. Format Code:
-    Use `prettier --check` or `prettier --write` to check or format the code.
-    ```bash
-    npm run format
-    ## fix the code style automatically
-    npm run format:fix
-    ```
+5. Test coverage:
+```bash
+npx vitest run --coverage
+```
+
+6. Format Code:
+```bash
+npm run format
+## fix the code style automatically
+npm run format:fix
+```
 
 6. Visit [http://localhost:5173/markdown-html-converter/](http://localhost:5173/markdown-html-converter/) to start using the tool locally.
 
@@ -74,7 +79,7 @@ Feel free to fork this project and submit issues or pull requests for improvemen
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ## Documentation
 Here is the [AI generated wiki](https://deepwiki.com/DoctorLai/markdown-html-converter)
