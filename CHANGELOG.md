@@ -12,6 +12,7 @@ All notable changes to this project are documented here. This project uses date-
 - Dynamic JavaScript percentage badge generated from GitHub language data.
 - Responsive editor layout and interaction tests.
 - Sanitization of generated HTML before rendering the live preview.
+- Local draft persistence and copy controls for both editors.
 
 ### Changed
 
