@@ -1,91 +1,91 @@
-# Markdown to HTML Converter/Previewer
-[![Markdown-HTML-Converter (Built, Lint and Test)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml/badge.svg)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml) [![Run Tests with Coverage](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/coverage.yaml/badge.svg)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/coverage.yaml)
+# Markdown to HTML Converter
 
-A simple web-based tool to convert Markdown to HTML. This app is built using React and runs in the browser. It provides an easy-to-use interface with two text areas, where you can paste your Markdown source (left) and convert it to HTML (right). Meantime, the HTML will be previewed on the page.
+[![CI](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml/badge.svg)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/ci.yaml)
+[![Coverage](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/coverage.yaml/badge.svg)](https://github.com/DoctorLai/markdown-html-converter/actions/workflows/coverage.yaml)
+[![Last commit](https://img.shields.io/github/last-commit/DoctorLai/markdown-html-converter)](https://github.com/DoctorLai/markdown-html-converter/commits/main)
+[![License](https://img.shields.io/github/license/DoctorLai/markdown-html-converter)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/DoctorLai/markdown-html-converter)](https://github.com/DoctorLai/markdown-html-converter/stargazers)
+[![Watchers](https://img.shields.io/github/watchers/DoctorLai/markdown-html-converter)](https://github.com/DoctorLai/markdown-html-converter/watchers)
+[![Forks](https://img.shields.io/github/forks/DoctorLai/markdown-html-converter)](https://github.com/DoctorLai/markdown-html-converter/forks)
+[![Open issues](https://img.shields.io/github/issues/DoctorLai/markdown-html-converter)](https://github.com/DoctorLai/markdown-html-converter/issues)
+[![Open pull requests](https://img.shields.io/github/issues-pr/DoctorLai/markdown-html-converter)](https://github.com/DoctorLai/markdown-html-converter/pulls)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/DoctorLai/markdown-html-converter)](https://github.com/DoctorLai/markdown-html-converter/graphs/commit-activity)
+[![Repository size](https://img.shields.io/github/repo-size/DoctorLai/markdown-html-converter)](https://github.com/DoctorLai/markdown-html-converter)
+[![Top language](https://img.shields.io/github/languages/top/DoctorLai/markdown-html-converter)](https://github.com/DoctorLai/markdown-html-converter)
+[![JavaScript percentage](https://img.shields.io/endpoint?url=https%3A%2F%2Fdoctorlai.github.io%2Fmarkdown-html-converter%2Flanguage-badge.json)](https://github.com/DoctorLai/markdown-html-converter)
+[![Node.js 20+](https://img.shields.io/badge/Node.js-20%2B-339933?logo=nodedotjs&logoColor=white)](.nvmrc)
+[![Code style: Prettier](https://img.shields.io/badge/code_style-Prettier-f7b93e?logo=prettier&logoColor=black)](https://prettier.io/)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/DoctorLai/markdown-html-converter)
+
+A browser-based React application that converts Markdown to HTML and displays the generated markup alongside a rendered preview. Conversion stays in the browser.
 
 ![image](https://github.com/user-attachments/assets/c0afac08-cae8-48a1-b040-b2c5b6374b0f)
 
 ## Features
 
-- **Markdown to HTML Conversion**: Convert Markdown to HTML.
-- **Dark Mode**: Toggle between light and dark modes for better readability.
-- **Tab Support**: Properly inserts spaces when pressing the "Tab" key inside text areas.
-- **Simple and Intuitive UI**: Easy to use with a clean interface.
-- **Deploy Easily**: `npm run build` and `npm run deploy`
-- **Previewer** The tool provides a real-time HTML previewer for the given markdown source.
+- Convert Markdown to HTML with `marked` and sanitize previews with DOMPurify.
+- Inspect generated HTML and a rendered preview together.
+- Use Tab indentation inside the Markdown editor.
+- Persist a namespaced light or dark theme preference.
+- Use the responsive interface on desktop and mobile browsers.
 
 ## Live Demo
 
-You can try the live demo of this tool at [Github Page: Markdown-to-HTML Converter](https://doctorlai.github.io/markdown-html-converter/)
+Use the [live GitHub Pages application](https://doctorlai.github.io/markdown-html-converter/).
 
-Here is a similar [markdown/html previewer](https://helloacm.com/markdown/) online tool with Markdown API that was developed a while ago.
+For an alternative with a Markdown API, see this [online Markdown/HTML previewer](https://helloacm.com/markdown/).
 
-## Installation
+## Local Development
 
-To run the tool locally:
+Requires Node.js 20 or newer.
 
-1. Clone the repository:
 ```bash
 git clone https://github.com/doctorlai/markdown-html-converter.git
 cd markdown-html-converter
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
+npm ci
 npm run dev
 ```
 
-4. Tests:
-```bash
-## or simply: npm test
-npm run test
-```
-
-5. Test coverage:
-```bash
-npm run coverage
-```
-
-6. Format Code:
-```bash
-npm run format
-## fix the code style automatically
-npm run format:fix
-```
-
-6. Visit [http://localhost:5173/markdown-html-converter/](http://localhost:5173/markdown-html-converter/) to start using the tool locally.
+Open the URL printed by Vite. The configured base path is `/markdown-html-converter/`.
 
 ## Usage
 
-1. **Enter Markdown source** in the Markdown input box.
-2. **Click "Convert →"** to convert the Markdown to HTML.
+1. Enter Markdown in the left editor.
+2. Select **Convert to HTML**.
+3. Read or copy the generated HTML from the right editor and inspect the preview below.
 
-You can also switch between **Light Mode** and **Dark Mode** by clicking the button on the top right corner.
+The preview sanitizes generated HTML before rendering it. Continue to treat unknown Markdown carefully when copying its generated output elsewhere.
 
-## Contributing
+## Quality Commands
 
-Feel free to fork this project and submit issues or pull requests for improvements!
+| Command              | Purpose                                       |
+| -------------------- | --------------------------------------------- |
+| `npm run format`     | Check formatting with Prettier                |
+| `npm run format:fix` | Apply Prettier formatting                     |
+| `npm run lint`       | Run ESLint                                    |
+| `npm run test`       | Run the Vitest suite once                     |
+| `npm run test:watch` | Run Vitest in watch mode                      |
+| `npm run coverage`   | Test and enforce 80% coverage thresholds      |
+| `npm run build`      | Create the production build                   |
+| `npm run check`      | Run formatting, lint, coverage, and the build |
 
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature-branch`.
-3. Commit your changes: `git commit -am 'Add new feature'`.
-4. Push to the branch: `git push origin feature-branch`.
-5. Open a pull request.
+GitHub Actions runs `npm run check` for pushes and pull requests targeting `main`. A separate, least-privilege coverage workflow posts a Vitest coverage report on pull requests. Pushes to `main` pass the same checks before deploying to GitHub Pages and include the build date and short commit hash in the footer.
+
+## Project Policies
+
+- [Contributing Guide](CONTRIBUTING.md)
+- [Security Policy](SECURITY.md)
+- [Support](SUPPORT.md)
+- [Privacy Notice](PRIVACY.md)
+- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Changelog](CHANGELOG.md)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
-
-## Documentation
-Here is the [AI generated wiki](https://deepwiki.com/DoctorLai/markdown-html-converter)
+This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgments
 
-- Built with ❤️ by [@justyy](https://github.com/doctorlai).
-- Initial Boilerplate code contributed by ChatGPT-4o and o4-mini.
-- If you found this tool useful, consider buying me a [coffee](https://justyy.com/out/bmc).
+- Built by [@justyy](https://github.com/doctorlai).
+- If you found this tool useful, consider buying me a [coffee](https://www.buymeacoffee.com/y0BtG5R).

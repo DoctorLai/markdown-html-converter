@@ -2,9 +2,13 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { convertMarkdownToHtml } from "./functions";
 
+const STORAGE_KEY = "markdown-html-converter:dark-mode";
+const buildDate = import.meta.env.VITE_BUILD_DATE;
+const commitHash = import.meta.env.VITE_COMMIT_HASH;
+
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem("darkMode");
+    const saved = localStorage.getItem(STORAGE_KEY);
     return saved === "true";
   });
 
@@ -16,14 +20,14 @@ export default function App() {
   );
 
   useEffect(() => {
-    localStorage.setItem("darkMode", darkMode);
+    localStorage.setItem(STORAGE_KEY, darkMode);
   }, [darkMode]);
 
   const convertToHtml = () => {
     try {
       setHtmlOutput(convertMarkdownToHtml(markdownInput));
     } catch (err) {
-      alert("Markdown parse error: " + err.message);
+      alert(err.message);
     }
   };
 
@@ -49,13 +53,18 @@ export default function App() {
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
-      <button onClick={() => setDarkMode(!darkMode)}>
+      <button
+        type="button"
+        aria-pressed={darkMode}
+        onClick={() => setDarkMode(!darkMode)}
+      >
         {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
       </button>
-      <div>
+      <main className="app-container">
         <h1>Markdown → HTML Converter</h1>
         <div className="textarea-container">
           <textarea
+            aria-label="Markdown input"
             value={markdownInput}
             onChange={(e) => setMarkdownInput(e.target.value)}
             placeholder={`# Welcome\n\n- Type markdown here\n- Then click "Convert"`}
@@ -63,6 +72,7 @@ export default function App() {
             rows="30"
           />
           <textarea
+            aria-label="HTML output"
             value={htmlOutput}
             readOnly
             placeholder="HTML output will appear here"
@@ -71,8 +81,12 @@ export default function App() {
           />
         </div>
         <div>
-          <button onClick={convertToHtml}>Convert to HTML →</button>
-          <button onClick={clearInputs}>❌ Clear</button>
+          <button type="button" onClick={convertToHtml}>
+            Convert to HTML →
+          </button>
+          <button type="button" onClick={clearInputs}>
+            ❌ Clear
+          </button>
         </div>
 
         {/* Live HTML Preview */}
@@ -81,8 +95,12 @@ export default function App() {
           className="preview"
           dangerouslySetInnerHTML={{ __html: htmlOutput }}
         ></div>
-      </div>
+      </main>
       <footer>
+        <p className="version">
+          Version: {buildDate || "development"}
+          {commitHash && ` (${commitHash})`}
+        </p>
         <p>
           Made with ❤️ by{" "}
           <a
@@ -96,7 +114,7 @@ export default function App() {
         <p>
           If you found this useful, consider buying me a{" "}
           <a
-            href="https://justyy.com/out/bmc"
+            href="https://www.buymeacoffee.com/y0BtG5R"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -120,6 +138,7 @@ export default function App() {
             title="Online Markdown/HTML Previewer with API"
             target="_blank"
             href="https://helloacm.com/markdown/"
+            rel="noopener noreferrer"
           >
             Online Markdown/HTML Previewer with API
           </a>

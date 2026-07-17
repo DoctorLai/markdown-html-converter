@@ -35,6 +35,16 @@ describe("convertMarkdownToHtml", () => {
     expect(() => convertMarkdownToHtml(123)).toThrow("Markdown parse error");
   });
 
+  it("removes unsafe HTML from the rendered preview", () => {
+    const html = convertMarkdownToHtml(
+      '<img src="x" onerror="alert(1)"><script>alert(1)</script>',
+    );
+
+    expect(html).toContain('<img src="x">');
+    expect(html).not.toContain("onerror");
+    expect(html).not.toContain("<script");
+  });
+
   it("converts complex markdown with multiple elements", () => {
     const md = `
 # Title
