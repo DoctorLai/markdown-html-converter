@@ -2,7 +2,9 @@
 .app {
   background-color: #ffffff;
   color: #000000;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   min-height: 100vh;
   padding: 1rem;
   font-family: Arial, sans-serif;
@@ -15,9 +17,9 @@
 
 /* Main content container */
 .app-container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem 0;
 }
 
 /* Header */
@@ -41,7 +43,10 @@ textarea {
   margin-bottom: 1rem;
   background-color: #f0f0f0;
   color: #000;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .app.dark textarea {
@@ -64,21 +69,21 @@ textarea {
 
 /* Buttons */
 button {
-  padding: 0.6rem 1.2rem;       /* same vertical and horizontal padding */
-  font-size: 1rem;              /* same font size */
-  line-height: 1.2;             /* consistent line height */
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  line-height: 1.2;
   cursor: pointer;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 4px;
   transition: background-color 0.2s ease;
-  margin: 0.5rem 0.5rem 1rem 0.5rem; /* uniform margin */
-  box-sizing: border-box;       /* include padding/border in size */
-  display: inline-flex;         /* better alignment */
-  align-items: center;          /* vertical center content */
-  height: 40px;                 /* fixed height for all buttons */
-  min-width: 100px;             /* optional: consistent min width */
+  margin: 0.5rem 0.5rem 1rem 0.5rem;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  min-width: 100px;
 }
 
 button:hover {
@@ -107,6 +112,10 @@ footer p {
   color: #555;
 }
 
+.app.dark footer p {
+  color: #bbb;
+}
+
 footer a {
   color: #007bff;
   text-decoration: underline;
@@ -115,6 +124,14 @@ footer a {
 
 footer a:hover {
   color: #0056b3;
+}
+
+.app.dark a {
+  color: #ffdf5d;
+}
+
+.app.dark a:hover {
+  color: #fff3a6;
 }
 
 .preview {
@@ -130,4 +147,23 @@ footer a:hover {
   background-color: #1e1e1e;
   color: #ddd;
   border-color: #444;
+}
+
+.version {
+  font-variant-numeric: tabular-nums;
+}
+
+footer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .textarea-container {
+    flex-direction: column;
+  }
+
+  .textarea-container textarea {
+    min-height: 220px;
+  }
 }

@@ -1,16 +1,20 @@
 name: Test Coverage
 
-on:
+"on":
   pull_request:
+    branches: [main]
   push:
-    branches: [ main ]
+    branches: [main]
+
+concurrency:
+  group: coverage-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: write
 
     steps:
       - name: Checkout repository
@@ -19,7 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
@@ -28,16 +32,10 @@ jobs:
       - name: Run tests with coverage
         run: npm run coverage
 
-      - name: Report coverage on PR
-        uses: davelosert/vitest-coverage-report-action@v2
-        if: github.event_name == 'pull_request'
-        with:
-          json-summary-path: coverage/coverage-summary.json
-          json-final-path: coverage/coverage-final.json
-
       - name: Upload coverage report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report
+          name: coverage-report-${{ github.run_id }}
           path: coverage/
+          retention-days: 14
