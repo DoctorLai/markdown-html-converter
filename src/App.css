@@ -62,9 +62,29 @@ textarea {
   margin-bottom: 1rem;
 }
 
-.textarea-container textarea {
-  flex: 1; /* equal width */
+.editor-panel {
+  flex: 1;
+  min-width: 0;
+}
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.editor-header label {
+  font-weight: 700;
+}
+
+.editor-panel textarea {
   min-height: 300px;
+}
+
+.copy-button {
+  min-width: 112px;
+  margin-right: 0;
 }
 
 /* Buttons */
@@ -163,7 +183,7 @@ footer {
     flex-direction: column;
   }
 
-  .textarea-container textarea {
+  .editor-panel textarea {
     min-height: 220px;
   }
 }

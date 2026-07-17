@@ -26,6 +26,8 @@ A browser-based React application that converts Markdown to HTML and displays th
 
 - Convert Markdown to HTML with `marked` and sanitize previews with DOMPurify.
 - Inspect generated HTML and a rendered preview together.
+- Keep Markdown and generated HTML drafts in browser local storage.
+- Copy either the Markdown source or HTML output with one button.
 - Use Tab indentation inside the Markdown editor.
 - Persist a namespaced light or dark theme preference.
 - Use the responsive interface on desktop and mobile browsers.
@@ -54,6 +56,8 @@ Open the URL printed by Vite. The configured base path is `/markdown-html-conver
 1. Enter Markdown in the left editor.
 2. Select **Convert to HTML**.
 3. Read or copy the generated HTML from the right editor and inspect the preview below.
+
+The application restores both editors when you return in the same browser. Use **Clear** to empty the editors and their saved drafts.
 
 The preview sanitizes generated HTML before rendering it. Continue to treat unknown Markdown carefully when copying its generated output elsewhere.
 

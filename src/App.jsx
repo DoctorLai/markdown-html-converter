@@ -2,26 +2,41 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { convertMarkdownToHtml } from "./functions";
 
-const STORAGE_KEY = "markdown-html-converter:dark-mode";
+const STORAGE_KEYS = {
+  darkMode: "markdown-html-converter:dark-mode",
+  markdown: "markdown-html-converter:markdown",
+  html: "markdown-html-converter:html",
+};
+const DEFAULT_MARKDOWN =
+  '# Welcome\n\n- Type markdown here\n- Then click "Convert"';
 const buildDate = import.meta.env.VITE_BUILD_DATE;
 const commitHash = import.meta.env.VITE_COMMIT_HASH;
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved = localStorage.getItem(STORAGE_KEYS.darkMode);
     return saved === "true";
   });
-
   const [markdownInput, setMarkdownInput] = useState(
-    '# Welcome\n\n- Type markdown here\n- Then click "Convert"',
+    () => localStorage.getItem(STORAGE_KEYS.markdown) ?? DEFAULT_MARKDOWN,
   );
-  const [htmlOutput, setHtmlOutput] = useState(
-    convertMarkdownToHtml(markdownInput),
-  );
+  const [htmlOutput, setHtmlOutput] = useState(() => {
+    const saved = localStorage.getItem(STORAGE_KEYS.html);
+    return saved ?? convertMarkdownToHtml(markdownInput);
+  });
+  const [copiedContent, setCopiedContent] = useState(null);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, darkMode);
+    localStorage.setItem(STORAGE_KEYS.darkMode, darkMode);
   }, [darkMode]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.markdown, markdownInput);
+  }, [markdownInput]);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.html, htmlOutput);
+  }, [htmlOutput]);
 
   const convertToHtml = () => {
     try {
@@ -34,6 +49,16 @@ export default function App() {
   const clearInputs = () => {
     setMarkdownInput("");
     setHtmlOutput("");
+    setCopiedContent(null);
+  };
+
+  const copyToClipboard = async (editor, value) => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopiedContent({ editor, value });
+    } catch {
+      alert(`Unable to copy ${editor} to the clipboard.`);
+    }
   };
 
   const handleTab = (e) => {
@@ -63,22 +88,52 @@ export default function App() {
       <main className="app-container">
         <h1>Markdown → HTML Converter</h1>
         <div className="textarea-container">
-          <textarea
-            aria-label="Markdown input"
-            value={markdownInput}
-            onChange={(e) => setMarkdownInput(e.target.value)}
-            placeholder={`# Welcome\n\n- Type markdown here\n- Then click "Convert"`}
-            onKeyDown={handleTab}
-            rows="30"
-          />
-          <textarea
-            aria-label="HTML output"
-            value={htmlOutput}
-            readOnly
-            placeholder="HTML output will appear here"
-            onFocus={(e) => e.target.select()}
-            rows="30"
-          />
+          <section className="editor-panel">
+            <div className="editor-header">
+              <label htmlFor="markdown-input">Markdown source</label>
+              <button
+                type="button"
+                className="copy-button"
+                onClick={() => copyToClipboard("source", markdownInput)}
+              >
+                {copiedContent?.editor === "source" &&
+                copiedContent.value === markdownInput
+                  ? "Copied"
+                  : "Copy source"}
+              </button>
+            </div>
+            <textarea
+              id="markdown-input"
+              value={markdownInput}
+              onChange={(e) => setMarkdownInput(e.target.value)}
+              placeholder={`# Welcome\n\n- Type markdown here\n- Then click "Convert"`}
+              onKeyDown={handleTab}
+              rows="30"
+            />
+          </section>
+          <section className="editor-panel">
+            <div className="editor-header">
+              <label htmlFor="html-output">HTML output</label>
+              <button
+                type="button"
+                className="copy-button"
+                onClick={() => copyToClipboard("output", htmlOutput)}
+              >
+                {copiedContent?.editor === "output" &&
+                copiedContent.value === htmlOutput
+                  ? "Copied"
+                  : "Copy output"}
+              </button>
+            </div>
+            <textarea
+              id="html-output"
+              value={htmlOutput}
+              readOnly
+              placeholder="HTML output will appear here"
+              onFocus={(e) => e.target.select()}
+              rows="30"
+            />
+          </section>
         </div>
         <div>
           <button type="button" onClick={convertToHtml}>
