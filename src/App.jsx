@@ -24,7 +24,7 @@ export default function App() {
     const saved = localStorage.getItem(STORAGE_KEYS.html);
     return saved ?? convertMarkdownToHtml(markdownInput);
   });
-  const [copiedEditor, setCopiedEditor] = useState(null);
+  const [copiedContent, setCopiedContent] = useState(null);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.darkMode, darkMode);
@@ -49,13 +49,13 @@ export default function App() {
   const clearInputs = () => {
     setMarkdownInput("");
     setHtmlOutput("");
-    setCopiedEditor(null);
+    setCopiedContent(null);
   };
 
   const copyToClipboard = async (editor, value) => {
     try {
       await navigator.clipboard.writeText(value);
-      setCopiedEditor(editor);
+      setCopiedContent({ editor, value });
     } catch {
       alert(`Unable to copy ${editor} to the clipboard.`);
     }
@@ -96,7 +96,10 @@ export default function App() {
                 className="copy-button"
                 onClick={() => copyToClipboard("source", markdownInput)}
               >
-                {copiedEditor === "source" ? "Copied" : "Copy source"}
+                {copiedContent?.editor === "source" &&
+                copiedContent.value === markdownInput
+                  ? "Copied"
+                  : "Copy source"}
               </button>
             </div>
             <textarea
@@ -116,7 +119,10 @@ export default function App() {
                 className="copy-button"
                 onClick={() => copyToClipboard("output", htmlOutput)}
               >
-                {copiedEditor === "output" ? "Copied" : "Copy output"}
+                {copiedContent?.editor === "output" &&
+                copiedContent.value === htmlOutput
+                  ? "Copied"
+                  : "Copy output"}
               </button>
             </div>
             <textarea

@@ -116,6 +116,27 @@ describe("App", () => {
     expect(screen.getAllByRole("button", { name: "Copied" })).toHaveLength(1);
   });
 
+  test("removes copied feedback when the copied content changes", async () => {
+    render(<App />);
+    const markdownInput = screen.getByRole("textbox", {
+      name: "Markdown source",
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: "Copy source" }));
+    await screen.findByRole("button", { name: "Copied" });
+    fireEvent.change(markdownInput, { target: { value: "# Updated" } });
+    expect(
+      screen.getByRole("button", { name: "Copy source" }),
+    ).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("button", { name: "Copy output" }));
+    await screen.findByRole("button", { name: "Copied" });
+    fireEvent.click(screen.getByRole("button", { name: /convert to html/i }));
+    expect(
+      screen.getByRole("button", { name: "Copy output" }),
+    ).toBeInTheDocument();
+  });
+
   test("reports clipboard failures", async () => {
     const alert = vi.spyOn(globalThis, "alert").mockImplementation(() => {});
     navigator.clipboard.writeText.mockRejectedValueOnce(
