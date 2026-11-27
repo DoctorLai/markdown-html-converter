@@ -19,7 +19,7 @@
     "check": "npm run format && npm run lint && npm run coverage && npm run build"
   },
   "dependencies": {
-    "dompurify": "^3.4.17",
+    "dompurify": "^3.5.0",
     "marked": "^18.2.0",
     "react": "^19.2.7",
     "react-dom": "^19.3.1"
